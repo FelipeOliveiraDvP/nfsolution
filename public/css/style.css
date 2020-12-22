@@ -1,0 +1,135 @@
+/*
+    Basic styles and theme defaults
+*/
+
+/* Site layout */
+.site-main {
+    height: 85vh;
+}
+
+.site-header {
+    height: 10vh;
+}
+
+.site-footer {
+    height: 5vh;
+}
+
+.site-header > nav,
+.site-footer > p {
+    height: 100%;
+}
+
+/* Align content center */
+.align-center {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form style */
+.form {
+    width: 320px;
+}
+
+.form .spinner {
+    width: 3em;
+    height: 3em;
+}
+
+/* JQuery validation error message */
+label.error {
+    color: #f00;
+}
+
+/* Bootstrap normalize */
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Sidebar */
+.nav-link[data-toggle].collapsed:before {
+    content: " ▾";
+}
+.nav-link[data-toggle]:not(.collapsed):before {
+    content: " ▴";
+}
+
+/* Card value */
+.card-value {
+    font-size: 4em;
+    font-weight: 500;
+}
+
+/* Table filter */
+.table-filter {
+    display: flex;
+    justify-content: flex-end;    
+}
+
+.search-container {
+    position: relative;
+}
+
+.input-search {
+    border: 1px solid #808080;
+    border-radius: 16px;
+    padding: 5px 10px;    
+}
+
+.input-search:focus {
+    outline: none;
+}
+
+.btn-search {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+}
+
+/* Table pagination */
+.table-pagination {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.table-pagination .pagination li {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-right: 5px;
+    border-radius: 100%;
+    background-color: #f00;    
+}
+
+.table-pagination .pagination li:hover {
+    cursor: pointer;
+}
+
+.table-pagination .pagination li a {
+    color: aliceblue;
+    padding: 10px;
+}
+
+.table-pagination .pagination li a:hover {
+    text-decoration: none;
+}
+
+.table-pagination .pagination li.active {
+    background-color: black;
+}
+
+/* Product images */
+.product-image-preview {
+    max-width: 150px;
+}
+
+.product-image {
+    max-width: 300px;
+}

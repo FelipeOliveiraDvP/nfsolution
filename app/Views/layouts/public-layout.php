@@ -36,9 +36,9 @@
 
     </div>
 
-    <script src="<?= base_url('js/jquery/jquery.min.css')?>"></script>
-    <script src="<?= base_url('js/bootstrap/popper.min.css')?>"></script>
-    <script src="<?= base_url('js/bootstrap/bootstrap.min.css')?>"></script>
+    <script src="<?= base_url('js/jquery/jquery.min.js')?>"></script>
+    <script src="<?= base_url('js/bootstrap/popper.min.js')?>"></script>
+    <script src="<?= base_url('js/bootstrap/bootstrap.min.js')?>"></script>
     <?= $this->renderSection('scripts'); ?>
 
 </body>

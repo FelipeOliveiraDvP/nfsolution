@@ -11,4 +11,12 @@ class Home extends BaseController
 		}
 		return view('login');
 	}
+
+	public function forget()
+	{
+		if (session()->get('is_logged')) {
+			return redirect()->to('/dashboard');
+		}
+		return view('forget');
+	}
 }

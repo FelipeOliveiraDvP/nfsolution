@@ -20,8 +20,10 @@ class Filters extends BaseConfig
 			// 'csrf',
 			'auth' => [
 				'except' => [
-					'/',
+					'/',					
+					'/home/forget',
 					'/auth/login',					
+					'/auth/forget',					
 				]
 			]
 		],

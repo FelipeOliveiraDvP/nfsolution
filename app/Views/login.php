@@ -16,7 +16,7 @@
             <label class="form-check-label" for="user_remember">Lembrar de mim</label>
         </div>
         <button type="submit" class="btn btn-primary w-100">Entrar</button>
-        <a href="#" class="btn btn-link px-0">Esqueci minha senha</a>
+        <a href="/home/forget" class="btn btn-link px-0">Esqueci minha senha</a>
 
         <?php if (session()->get('error')) : ?>
             <div class="alert alert-danger">

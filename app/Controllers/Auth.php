@@ -40,4 +40,13 @@ class Auth extends BaseController
         session()->destroy();
         return redirect()->to('/');
     }
+
+    public function forget()
+    {
+        $data = [            
+            'message'   => 'O link para a recuperação foi enviado para o e-mail!'
+        ];
+
+        return view('forget', $data);
+    }
 }

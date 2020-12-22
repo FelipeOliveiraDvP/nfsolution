@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
     <link rel="stylesheet" href="<?= base_url('css/bootstrap/bootstrap.min.css')?>">
-    <link rel="stylesheet" href="<?= base_url('css/font-awesome/font-awesome.min.css')?>">    
+    <link rel="stylesheet" href="<?= base_url('css/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css')?>">    
     <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/desktop.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/tablet.css') ?>">

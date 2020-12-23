@@ -1,4 +1,9 @@
 $('#forget-form').validate({    
+    submitHandler: function(form) {
+        $('.form').hide();
+        $('#form-status').removeClass('d-none'); 
+        form.submit();        
+    }, 
     rules: {
         'user-email': {
             required: true,
@@ -11,9 +16,4 @@ $('#forget-form').validate({
             email: 'Informe um e-mail válido!'
         },        
     }
-});
-
-$('#forget-form').submit(function() {    
-    $('.form').hide();
-    $('#form-status').removeClass('d-none');    
 });

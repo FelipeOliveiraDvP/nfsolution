@@ -1,8 +1,44 @@
 /*
     Basic styles and theme defaults
+
+    1 - Typography
+    2 - Colors
+    3 - Layout
+    4 - Alignment
+    5 - Buttons
+    6 - Forms    
+    7 - Sidebar
+    8 - Messages
+    9 - Tables
+    10 - Dashboard
+    11 - Images
 */
 
-/* Site layout */
+/* Normalize */
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* 1 - Typography */
+* {
+    font-family: 'Montserrat', sans-serif; 
+}
+
+/* 2 - Colors */
+:root {
+    --color-primary: #3A3335;    
+    --color-secondary: #5386E4;
+    --color-background: #FBF5F3;
+    --color-danger: #D64045;
+    --color-success: #69DC9E;    
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+/* 3 - Layouts */
 .site-main {
     height: 85vh;
 }
@@ -20,7 +56,7 @@
     height: 100%;
 }
 
-/* Align content center */
+/* 4 - Alignment */
 .align-center {
     height: 100%;
     display: flex;
@@ -28,7 +64,16 @@
     align-items: center;
 }
 
-/* Form style */
+/* 5 - Buttons */
+.button {
+
+}
+
+.button:hover {
+    
+}
+
+/* 6 - Forms */
 .form {
     width: 320px;
 }
@@ -38,18 +83,7 @@
     height: 3em;
 }
 
-/* JQuery validation error message */
-label.error {
-    color: #f00;
-}
-
-/* Bootstrap normalize */
-.row {
-    margin-left: 0;
-    margin-right: 0;
-}
-
-/* Sidebar */
+/* 7 - Sidebar */
 .nav-link[data-toggle].collapsed:before {
     content: " ▾";
 }
@@ -57,11 +91,12 @@ label.error {
     content: " ▴";
 }
 
-/* Card value */
-.card-value {
-    font-size: 4em;
-    font-weight: 500;
+/* 8 - Messages */
+label.error {
+    color: var(--color-danger);
 }
+
+/* 9 - Tables */
 
 /* Table filter */
 .table-filter {
@@ -125,7 +160,13 @@ label.error {
     background-color: black;
 }
 
-/* Product images */
+/* 10 - Dashboard */
+.card-value {
+    font-size: 4em;
+    font-weight: 500;
+}
+
+/* 11 - Images */
 .product-image-preview {
     max-width: 150px;
 }

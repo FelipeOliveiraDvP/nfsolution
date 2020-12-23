@@ -6,8 +6,8 @@ class Auth extends BaseController
 {
 	public function login()
 	{
-        $user_email = $this->request->getPost('user_email');
-        $user_pass = $this->request->getPost('user_pass');
+        $user_email = $this->request->getPost('user-email');
+        $user_pass = $this->request->getPost('user-pass');
 
         if ($user_email == 'felipe@email.com' && $user_pass == 'fejao1010') {
             $user_data = [
@@ -26,12 +26,8 @@ class Auth extends BaseController
                 'error'     => true,
                 'message'   => 'Usuário ou senha inválidos!'
             ];
-
-            session()->markAsFlashdata('error');
-            session()->markAsFlashdata('message');
-            session()->set($data);
             
-            return redirect()->to('/');
+            return view('login', $data);
         }         
     }
     

@@ -1,27 +1,27 @@
-$('#login_form').validate({    
+$('#login-form').validate({   
+    submitHandler: function(form) {
+        $('.form').hide();
+        $('#form-status').removeClass('d-none'); 
+        form.submit();        
+    }, 
     rules: {
-        user_email: {
+        'user-email': {
             required: true,
             email: true
         },
-        user_pass: {
+        'user-pass': {
             required: true,
             minlength: 8
         },
     },
     messages: {
-        user_email: {
+        'user-email': {
             required: 'Por favor, informe um e-mail!',
             email: 'Informe um e-mail válido!'
         },
-        user_pass: {
+        'user-pass': {
             required: 'Por favor, informe uma senha!',
             minlength: 'A senha precisa ter no mínimo 8 caracteres'
         },
     }
-});
-
-$('#login_form').submit(function() {    
-    $('.form').hide();
-    $('#login_status').removeClass('d-none');    
 });

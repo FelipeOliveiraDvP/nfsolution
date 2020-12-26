@@ -5,6 +5,7 @@
  */
 ?>
 <nav class="site-sidebar">
+    <span class="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></span>
     <ul class="nav flex-column flex-nowrap overflow-hiden">
         <li class="nav-item">
             <a class="nav-link text-truncate" href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> <span class="sidebar-label">Home</span></a>

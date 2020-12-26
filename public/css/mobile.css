@@ -2,5 +2,12 @@
  Style for mobile devices with resolution max width 450px
 */
 @media screen and (max-width: 450px) {
-    
+    /* Sidebar */
+    .site-sidebar ul {
+        display: none;
+    }
+
+    .site-sidebar .menu-toggle {
+        display: block;
+    }
 }

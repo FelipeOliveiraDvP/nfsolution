@@ -11,13 +11,18 @@
     <form id="product-form" action="/products/save" method="post">
         <div class="form-row">
             <div class="col-12 col-md-6 col-lg-3">
-                <img class="product-image" id="product-image-preview" src="<?= base_url('img/placeholder-product-image.png') ?>" alt="">
-                <input type="file" name="product-image" id="product-image" onchange="previewFile('#product-image', '#product-image-preview')">
+                <img class="img-fluid" id="product-image-preview" src="<?= base_url('img/placeholder-product-image.png') ?>" alt="">
+                
+                <div class="upload-btn">
+                    <input type="file" name="product-image" id="product-image" onchange="previewFile('#product-image', '#product-image-preview')" hidden>
+                    <label for="product-image">Escolha um arquivo</label>
+                </div>
+                
                 <div class="mt-3">
                     <button class="btn btn-primary" type="submit">Salvar produto</button>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-9">
+            <div class="col-12 col-lg-9">
                 <div class="form-row">
                     <div class="col-12">
                         <div class="form-group">

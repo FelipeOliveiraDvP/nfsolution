@@ -19,7 +19,7 @@
         </form>
     </div>
 
-    <table class="table">
+    <table class="table table-responsive">
         <thead>
             <th>Imagem</th>
             <th>Título</th>

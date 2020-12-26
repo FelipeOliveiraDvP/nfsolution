@@ -34,7 +34,8 @@
     --color-success: #69DC9E;   
     --color-sidebar: #222222;
     --color-sidebar-item: #ffffff;   
-
+    --color-button: #0069D9;
+    --color-button-text: #ffffff;
 }
 
 body {
@@ -81,6 +82,15 @@ body {
     
 }
 
+.upload-btn label {
+    background-color: var(--color-button);
+    color: var(--color-button-text);
+    padding: .5rem;
+    border-radius: .3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
 /* 6 - Forms */
 .form {
     width: 320px;
@@ -97,8 +107,17 @@ body {
     height: 100%;
 }
 
+.site-sidebar .menu-toggle {
+    display: none;
+    color: var(--color-sidebar-item);    
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+}
+
 .site-sidebar .nav-item .nav-link {
     color: var(--color-sidebar-item);
+    font-size: 1.2em;
 }
 
 .site-sidebar .nav-item .nav-link:hover {

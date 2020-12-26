@@ -42,10 +42,10 @@
 
         <main class="site-main private">
             <div class="row">
-                <div class="col-12 col-md-3 col-lg-2 p-0">
+                <div class="col-12 col-md-3 col-lg-3 col-xl-2 p-0">                    
                     <?= $this->include('layouts/sidebar'); ?>
                 </div>
-                <div class="col-12 col-md-9 col-lg-10">
+                <div class="col-12 col-md-9 col-lg-9 col-xl-10">
                     <?= $this->renderSection('content'); ?>
                 </div>
             </div>
@@ -55,6 +55,7 @@
     <script src="<?= base_url('js/jquery/jquery.min.js') ?>"></script>
     <script src="<?= base_url('js/bootstrap/popper.min.js') ?>"></script>
     <script src="<?= base_url('js/bootstrap/bootstrap.min.js') ?>"></script>
+    <script src="<?= base_url('js/utils/sidebar.js') ?>"></script>
     <?= $this->renderSection('scripts'); ?>
 
 </body>

@@ -31,7 +31,10 @@
     --color-secondary: #5386E4;
     --color-background: #FBF5F3;
     --color-danger: #D64045;
-    --color-success: #69DC9E;    
+    --color-success: #69DC9E;   
+    --color-sidebar: #222222;
+    --color-sidebar-item: #ffffff;   
+
 }
 
 body {
@@ -39,12 +42,16 @@ body {
 }
 
 /* 3 - Layouts */
+.site-header {
+    height: 10vh;
+}
+
 .site-main {
     height: 85vh;
 }
 
-.site-header {
-    height: 10vh;
+.site-main.private {
+    height: 90vh;
 }
 
 .site-footer {
@@ -52,7 +59,8 @@ body {
 }
 
 .site-header > nav,
-.site-footer > p {
+.site-footer > p,
+.site-main > .row {
     height: 100%;
 }
 
@@ -84,10 +92,28 @@ body {
 }
 
 /* 7 - Sidebar */
-.nav-link[data-toggle].collapsed:before {
+.site-sidebar {
+    background-color: var(--color-sidebar);
+    height: 100%;
+}
+
+.site-sidebar .nav-item .nav-link {
+    color: var(--color-sidebar-item);
+}
+
+.site-sidebar .nav-item .nav-link:hover {
+    background-color: #333333;
+}
+
+.site-sidebar .nav-item ul {
+    background-color: #444444;
+    border-left: 2px solid #ffffff;
+}
+
+.nav-link[data-toggle].collapsed:after {
     content: " ▾";
 }
-.nav-link[data-toggle]:not(.collapsed):before {
+.nav-link[data-toggle]:not(.collapsed):after {
     content: " ▴";
 }
 

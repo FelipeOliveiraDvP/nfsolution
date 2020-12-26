@@ -15,7 +15,7 @@
                 
                 <div class="upload-btn">
                     <input type="file" name="product-image" id="product-image" onchange="previewFile('#product-image', '#product-image-preview')" hidden>
-                    <label for="product-image">Escolha um arquivo</label>
+                    <label for="product-image">Escolha uma imagem</label>
                 </div>
                 
                 <div class="mt-3">

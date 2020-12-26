@@ -2,12 +2,42 @@
  Style for mobile devices with resolution max width 450px
 */
 @media screen and (max-width: 450px) {
+    /* Layout */
+    .site-header,
+    .site-main,
+    .site-main.private,
+    .site-footer,
+    .site-header > nav,
+    .site-footer > p,
+    .site-main > .row {
+        height: unset;
+    }
+    
     /* Sidebar */
+    .site-sidebar {
+        height: unset;
+    }
+
     .site-sidebar ul {
         display: none;
     }
 
     .site-sidebar .menu-toggle {
         display: block;
+    }
+
+    /* Tables */
+    .table-filter {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1em;    
+    }
+
+    .table th {
+        min-width: 100px;
+    }
+
+    .product-image-preview {
+        max-width: 75px;
     }
 }

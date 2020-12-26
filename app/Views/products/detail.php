@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/private-layout') ?>
 
 <?= $this->section('styles') ?>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link rel="stylesheet" href="<?= base_url('css/summernote/summernote-bs4.min.css')?>">
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
@@ -63,6 +63,7 @@
 <?= $this->section('scripts') ?>
 <script src="<?= base_url('js/utils/previewfile.js') ?>"></script>
 <script src="<?= base_url('js/summernote/summernote.min.js') ?>"></script>
+<script src="<?= base_url('js/summernote/dist_lang_summernote-pt-BR.js') ?>"></script>
 <script src="<?= base_url('js/summernote/product-editor.js') ?>"></script>
 <script src="<?= base_url('js/validation/jquery.validate.min.js'); ?>"></script>
 <script src="<?= base_url('js/validation/product-validation.js') ?>"></script>

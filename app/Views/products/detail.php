@@ -67,4 +67,6 @@
 <script src="<?= base_url('js/summernote/product-editor.js') ?>"></script>
 <script src="<?= base_url('js/validation/jquery.validate.min.js'); ?>"></script>
 <script src="<?= base_url('js/validation/product-validation.js') ?>"></script>
+<script src="<?= base_url('js/jquery-mask/jquery.mask.min.js') ?>"></script>
+<script src="<?= base_url('js/jquery-mask/product-masks.js') ?>"></script>
 <?= $this->endSection() ?>

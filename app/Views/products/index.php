@@ -43,7 +43,7 @@
                         <td><?= $product['quantity'] ?></td>
                         <td>
                             <a class="btn btn-primary" href="#"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
-                            <a class="btn btn-danger" href="#"><i class="fa fa-trash" aria-hidden="true"></i> Editar</a>
+                            <a class="btn btn-danger" href="#"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

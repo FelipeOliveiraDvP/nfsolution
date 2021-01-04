@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use App\Models\RecoveryPasswordModel;
+use DateTime;
 
 class Auth extends BaseController
 {
@@ -57,10 +59,98 @@ class Auth extends BaseController
 
     public function forget()
     {
-        $data = [
-            'message'   => 'O link para a recuperação foi enviado para o e-mail!'
-        ];
+        $user_email = $this->request->getPost('user-email');
+        $user_model = new UserModel();
 
-        return view('forget', $data);
+        $valid_email = $user_model->where('email', $user_email)->first();
+
+        if ($valid_email) {
+            $random_token = $this->generateToken($valid_email['id']);            
+            $data = [
+                'email'         => $user_email,
+                'token'         => $random_token,                
+            ];
+
+            $recovery_model = new RecoveryPasswordModel();
+
+            $recovery_model->save($data);
+
+            // Send mail
+            $to = $user_email;
+            $subject = 'NFSolution - Recuperação de senha';
+            $recovery_link = base_url('home/changepassword?token=' . $random_token);
+            $message = "
+                <h2>Você solicitou a recuperação de senha</h2>
+                <p>Clique no link abaixo para cadastrar uma nova senha:</p>
+                <br><br><br>";
+            $message .= '<a href="' . $recovery_link . '">' . $recovery_link . '</a>';
+
+            $email = \Config\Services::email();
+            $email->setTo($to);
+            $email->setFrom('noreplay@nfsolution.com.br', 'Recuperação de senha');
+            $email->setSubject($subject);
+            $email->setMessage($message);
+
+            if ($email->send()) {
+                $data = [
+                    'message'   => 'Foi um enviado um e-mail com o link para a recuperação de senha.'
+                ];
+        
+                return view('forget', $data);
+            } else {
+                $data = [
+                    'error'   => 'Ocorreu um erro ao enviar o e-mail. Entre em contato com o administrador.'
+                ];
+        
+                return view('forget', $data);
+            }            
+        } else {
+            $data = [
+                'error'   => 'O e-mail informado não é válido. Por favor, tente novamente.'
+            ];
+    
+            return view('forget', $data);
+        }        
     }
+
+    public function changePassword()
+    {
+        $new_password = $this->request->getPost('new-password');
+        $confirm_password = $this->request->getPost('confirm-password');
+        $user_id = $this->request->getPost('user-id');
+
+        if ($new_password === $confirm_password) {
+            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+            $user_model = new UserModel();
+            $user_model->save([
+                'id'        => $user_id,
+                'password'  => $hashed_password
+            ]);
+
+            $data = [
+                'message' => 'Senha alterada com sucesso!'
+            ];
+            return view('change_password', $data);
+        } else {
+            $data = [
+                'error' => 'As senhas informadas não são iguais. Tente novamente'
+            ];
+            return view('change_password', $data);
+        }        
+    }
+
+    private function generateToken($id)
+    {
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $length = strlen($permitted_chars);
+        $token_size = 64;
+        $token = '';
+
+        for ($i = 0;$i < $token_size;$i++) {
+            $random_char = $permitted_chars[mt_rand(0, $length - 1)];
+            $token .= $random_char;
+        }
+
+        return $id . '.' . $token;
+    }    
 }

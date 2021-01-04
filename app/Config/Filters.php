@@ -22,8 +22,10 @@ class Filters extends BaseConfig
 				'except' => [
 					'/',					
 					'/home/forget',
+					'/home/changepassword',
 					'/auth/login',					
 					'/auth/forget',					
+					'/auth/changepassword',					
 				]
 			]
 		],

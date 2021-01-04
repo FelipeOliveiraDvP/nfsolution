@@ -2,35 +2,53 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
+
 class Auth extends BaseController
 {
-	public function login()
-	{
+    public function login()
+    {
+        $model = new UserModel();
+
         $user_email = $this->request->getPost('user-email');
         $user_pass = $this->request->getPost('user-pass');
+        
+        $valid_user = $model->where('email', $user_email)->first();
 
-        if ($user_email == 'felipe@email.com' && $user_pass == 'fejao1010') {
-            $user_data = [
-                'is_logged' => true,
-                'id'    => 1,
-                'name'  => 'Felipe de Oliveira',
-                'email' => 'felipe@email.com',
-                'role'  => 'admin'
-            ];
+        if ($valid_user) {
+            $valid_password = password_verify($user_pass, $valid_user['password']);
 
-            session()->set($user_data);
+            if ($valid_password) {
+                $user_data = [
+                    'is_logged'     => true,
+                    'id'            => $valid_user['id'],
+                    'name'          => $valid_user['name'],
+                    'email'         => $valid_user['email'],
+                    'role'          => $valid_user['role'],
+                    'company_id'    => $valid_user['company_id'],
+                ];
 
-            return redirect()->to('/dashboard');
+                session()->set($user_data);
+
+                return redirect()->to('/dashboard');
+            } else {
+                $data = [
+                    'error'     => true,
+                    'message'   => 'Usuário ou senha inválidos!'
+                ];
+
+                return view('login', $data);
+            }
         } else {
             $data = [
                 'error'     => true,
                 'message'   => 'Usuário ou senha inválidos!'
             ];
-            
+
             return view('login', $data);
-        }         
+        }
     }
-    
+
     public function logout()
     {
         session()->destroy();
@@ -39,7 +57,7 @@ class Auth extends BaseController
 
     public function forget()
     {
-        $data = [            
+        $data = [
             'message'   => 'O link para a recuperação foi enviado para o e-mail!'
         ];
 

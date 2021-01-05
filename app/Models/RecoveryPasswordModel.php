@@ -10,9 +10,9 @@ class RecoveryPasswordModel extends Model
     protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
-    protected $useSoftDeletes = true;
+    protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['email', 'token', 'request_date'];
+    protected $allowedFields = ['user_id', 'email', 'token', 'request_date'];
 
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';

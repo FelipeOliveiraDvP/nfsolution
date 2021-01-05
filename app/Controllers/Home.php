@@ -35,22 +35,22 @@ class Home extends BaseController
 
 		$valid_token = $model->where('token', $token)->first();
 
-		if ($valid_token) {
-			$user_id = explode('.', $valid_token['token']);
+		if ($valid_token) {			
 			$request_date = new DateTime($valid_token['request_date']);
 			$now = new DateTime('now');
 			$diff = $request_date->diff($now);
 			$hours_to_expire = 48;
 
 			if ($diff->h > $hours_to_expire) {
+				$model->where('token', $token)->delete();
+
 				$data = [
 					'error' => 'O token informado não é válido ou está expirado. Por favor, faça uma nova solicitação.'
 				];
-				
 				return view('change_password', $data);	
 			} else {
 				$data = [
-					'user_id' => $user_id[0]
+					'token' => $valid_token['token']
 				];
 				return view('change_password', $data);
 			}

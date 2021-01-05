@@ -7,6 +7,11 @@
             <p><?= $message ?></p>
             <a href="/" class="alert-link">Ir para o login</a>
         </div>
+    <?php elseif (!empty($error)) : ?>
+        <div class="alert alert-danger">
+            <p><?= $error ?></p>
+            <a href="/home/forget" class="alert-link">Recuperar minha senha</a>
+        </div>
     <?php else : ?>
         <form method="POST" action="/auth/changePassword" class="form" id="change-password-form">
             <div class="form-group">
@@ -17,14 +22,8 @@
                 <label for="user-pass">Confirme a sua senha</label>
                 <input type="password" class="form-control" name="confirm-password" id="confirm-password" required>
             </div>
-            <input type="hidden" name="user-id" value="<?= $user_id ?? '' ?>">
+            <input type="hidden" name="token" value="<?= $token ?? '' ?>">
             <button type="submit" class="btn btn-primary w-100">Alterar senha</button>
-
-            <?php if (!empty($error)) : ?>
-                <div class="alert alert-danger">
-                    <p><?= $error ?></p>
-                </div>
-            <?php endif; ?>
         </form>
     <?php endif; ?>
 

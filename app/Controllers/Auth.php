@@ -14,7 +14,7 @@ class Auth extends BaseController
 
         $user_email = $this->request->getPost('user-email');
         $user_pass = $this->request->getPost('user-pass');
-        
+
         $valid_user = $model->where('email', $user_email)->first();
 
         if ($valid_user) {
@@ -65,11 +65,12 @@ class Auth extends BaseController
         $valid_email = $user_model->where('email', $user_email)->first();
 
         if ($valid_email) {
-            $random_token = $this->generateToken($valid_email['id']);            
+            $random_token = $this->generateToken();
             $data = [
+                'user_id'       => $valid_email['id'],
                 'email'         => $user_email,
-                'token'         => $random_token,                
-            ];
+                'token'         => $random_token,
+            ];            
 
             $recovery_model = new RecoveryPasswordModel();
 
@@ -95,62 +96,76 @@ class Auth extends BaseController
                 $data = [
                     'message'   => 'Foi um enviado um e-mail com o link para a recuperação de senha.'
                 ];
-        
+
                 return view('forget', $data);
             } else {
                 $data = [
                     'error'   => 'Ocorreu um erro ao enviar o e-mail. Entre em contato com o administrador.'
                 ];
-        
+
                 return view('forget', $data);
-            }            
+            }
         } else {
             $data = [
                 'error'   => 'O e-mail informado não é válido. Por favor, tente novamente.'
             ];
-    
+
             return view('forget', $data);
-        }        
+        }
     }
 
     public function changePassword()
     {
         $new_password = $this->request->getPost('new-password');
         $confirm_password = $this->request->getPost('confirm-password');
-        $user_id = $this->request->getPost('user-id');
+        $token = $this->request->getPost('token');
 
         if ($new_password === $confirm_password) {
-            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-            $user_model = new UserModel();
-            $user_model->save([
-                'id'        => $user_id,
-                'password'  => $hashed_password
-            ]);
+            $recovery_model = new RecoveryPasswordModel();
+            $valid_token = $recovery_model->where('token', $token)->first();
 
-            $data = [
-                'message' => 'Senha alterada com sucesso!'
-            ];
-            return view('change_password', $data);
+            if ($valid_token) {
+                $user_id = $valid_token['user_id'];
+                $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+
+                $user_model = new UserModel();
+                $user_model->save([
+                    'id'        => $user_id,
+                    'password'  => $hashed_password
+                ]);
+
+                $recovery_model->where('token', $token)->delete();
+
+                $data = [
+                    'message' => 'Senha alterada com sucesso!'
+                ];
+                return view('change_password', $data);
+            } else {
+                $data = [
+                    'error' => 'Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde'
+                ];
+                return view('change_password', $data);    
+            }
         } else {
             $data = [
                 'error' => 'As senhas informadas não são iguais. Tente novamente'
             ];
             return view('change_password', $data);
-        }        
+        }
     }
 
-    private function generateToken($id)
+    private function generateToken()
     {
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $length = strlen($permitted_chars);
         $token_size = 64;
         $token = '';
 
-        for ($i = 0;$i < $token_size;$i++) {
+        for ($i = 0; $i < $token_size; $i++) {
             $random_char = $permitted_chars[mt_rand(0, $length - 1)];
             $token .= $random_char;
         }
 
-        return $id . '.' . $token;
-    }    
+        return $token;
+    }
 }
